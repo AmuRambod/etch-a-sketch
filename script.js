@@ -2,21 +2,17 @@
 //#region Plate
 const plate = document.querySelector(".plate");
 let mouseDown = false; //this variable helps us to track the position of the mouse button
-plate.addEventListener("mousedown",()=> mouseDown = true);
-plate.addEventListener("mouseup",()=> mouseDown = false);
+document.body.addEventListener("mousedown",()=> mouseDown = true);
+document.body.addEventListener("mouseup",()=> mouseDown = false);
 
 //color of the ink: DEFAULT = "black"
 let ink = "black";
 
 // this function creates the plate with size its given and adds two `EventListener`s to each cell.
 function createPlate(size){
-  let gridTemplate = "";
-  for(let i = 1;i <= size;i++){
-    gridTemplate += " auto ";
-  }
   plate.style.display = "grid";
-  plate.style["grid-template"] = `${gridTemplate} / ${gridTemplate}`;
-  
+  plate.style["grid-template"] = `repeat(${size},1fr) / repeat(${size},1fr)`
+
   //creating the cells and adding the `EventListener`s:
   for(let i = 1;i <= (size**2);i++){
     const cell = document.createElement("div");
@@ -34,5 +30,5 @@ function changeColor(e){
 //#endregion Plate
 
 //#region main()
-createPlate(16);
+createPlate(20);
 //#endregion main()

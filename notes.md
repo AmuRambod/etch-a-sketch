@@ -30,3 +30,26 @@ fix:
   user-select: none;
 }
 ```
+## 24 Farvardin 1401
+### plate mouse-down bug
+I found a bug that when you hold the mouse down outside of the plate and then go inside it, it does'nt register and vice-versa if you hold the mouse key down and exit the plate and release the mouse key then go back inside, it registeres as if you never released the key.
+
+fix:
+``` JS
+document.body.addEventListener("mousedown",()=> mouseDown = true);
+document.body.addEventListener("mouseup",()=> mouseDown = false);
+```
+Replacing `plate.addEventListener` with `document.body.addEventListener`.
+### A bit of code-cleanup
+in order to create the `.plate`s grid template, I used to do it in a very caveman way with for-loops:
+```js
+let gridTemplate = "";
+for(let i = 1;i <= size;i++){
+  gridTemplate += " auto ";
+}
+plate.style["grid-template"] = `${gridTemplate} / ${gridTemplate}`;
+```
+There is a more inteligent way of doing this by using `repeat()`:
+```js
+plate.style["grid-template"] = `repeat(${size},1fr) / repeat(${size},1fr)`
+```
