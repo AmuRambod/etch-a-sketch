@@ -26,6 +26,7 @@ function createPlate(size){
 function changeColor(e){
   if(e.type === "mouseover" && !mouseDown) return;
   e.target.style["background-color"] = ink;
+  e.target.style.opacity = 0.85;
 }
 //#endregion Plate
 

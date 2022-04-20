@@ -53,3 +53,41 @@ There is a more inteligent way of doing this by using `repeat()`:
 ```js
 plate.style["grid-template"] = `repeat(${size},1fr) / repeat(${size},1fr)`
 ```
+
+## 30 Farvardin 1401
+### Framing the plate
+I decided it would be best(design wise) that my website resembles a real etch-a-sketch board so I designed a frame and added shadows (to both frame and texts). In order to create an illusion of insate from frame in the plate, I did this:
+```css
+.plate{
+  /*creates a shadow inside the plate to create the illusion of depth*/
+  box-shadow: 1rem 1rem 15px 0.5rem black inset;
+}
+.cell{
+  /*to show the inset shadow of the plate*/
+  opacity:0.5;
+}
+```
+but I had to change the opacity of the cell after it have been colored to 0.85.
+
+### Prelude to responsiveness
+I changed all of the `px` values to rem and other relative units. In desktop view, I changed the `font-size` value on the `:root` element to 11px and in different viewport widths, I will change this value accordingly.
+
+## 31 Farvardin 1401
+### Mobile responsiveness
+In order to make the sizes of every element responsive to viewport-width, I modified the `font-size` value of the `:root` element:
+```css
+:root{
+  font-size: clamp(4.5px,0.9vw,11px);
+}
+```
+The font size will be 0.9% of the viewport-width with the minimum of 4.5 pixels and maximum of 11 pixels.
+
+And there was an issue of the background image for the mobile: It got janky and smooshed when the width was smaller than height. So in order to fix it, I rotated the original image 90° and saved it.
+```css
+@media screen and (orientation: portrait) {
+  body {
+    background-image: url(rotated-version-of-background-image.png);
+  }
+}
+```
+When the viewport-width is smaller than viewport-height(portrait mode), The background image will be the rotated version.

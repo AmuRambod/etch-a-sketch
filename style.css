@@ -1,24 +1,75 @@
-html,body{
-  height: 100%;
-  padding: 0;
-  margin: 0;
+/* Google Font: Oswald 700 */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
+
+/* font from https://www.dafont.com/mique.font */
+@font-face {
+  font-family: Mique;
+  src: url(./fonts/Mique.ttf);
+}
+
+:root{
+  /* font-size: 11px; */
+  font-size: clamp(4.5px,0.9vw,11px);
+  --frame-red: #d80100;
+  --header-yellow: #d6d600;
+  --frame-width: 7rem;
+  --frame-border-outset: #ff1a1a;
+  --plate-border-inset: #a80100;
 }
 
 body{
+  background-image: url(./images/doodle-frame.png);
+  background-size: cover;
+  background-repeat: round;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
   display: grid;
   grid-template: 95% 5% / 100%; /*row-template / column-template */
+  place-items: center;
 }
 
-.body{
+.frame{
+  display: grid;
+  grid-template: var(--frame-width) 50rem var(--frame-width) / var(--frame-width) 50rem var(--frame-width);
+  background-color: var(--frame-red);
+  border: 1.4rem outset var(--frame-border-outset);
+  border-radius: 1.5rem;
+  box-shadow: 3rem 3rem 10px grey;
+}
+
+.header{
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 2rem;
+  font-size: 2.2rem;
+  text-align: center;
+  color: var(--header-yellow);
+  grid-area: 1 / 1 / 2 / 4;
+  font-family: 'Oswald', sans-serif;
+  margin-top: 1rem;
+  text-shadow: 0.5rem 0.5rem 5.5px #700000;
+}
+
+.logo{
+  font-family: Mique;
+  font-size: 5.5rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0.1em 0.1em 5.5px black;
 }
 
 .plate{
-  width: 500px;
-  height: 500px;
-  border: 5px solid red;
+  background-color: #dbdbdb;
+  box-sizing: border-box;
+  grid-area: 2/2/3/3;
+  width: 50rem;
+  height: 50rem;
+  border: 1rem inset var(--plate-border-inset);
+  border-radius: 1rem;
+  box-shadow: 1rem 1rem 15px 0.5rem black inset;
 }
 
 .cell{
@@ -26,10 +77,19 @@ body{
   border: 1px dotted black;
   cursor: default;
   user-select: none;
+  border-style: none none dotted dotted;
+  opacity: 0.5;
 }
 
-footer{
+/* footer{
   display: flex;
   justify-content: center;
   align-items: center;
+} */
+
+/* media queries */
+@media screen and (orientation: portrait) {
+  body {
+    background-image: url(./images/doodle-frame-mobile.png);
+  }
 }
