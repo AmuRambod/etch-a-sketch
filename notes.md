@@ -91,3 +91,23 @@ And there was an issue of the background image for the mobile: It got janky and 
 }
 ```
 When the viewport-width is smaller than viewport-height(portrait mode), The background image will be the rotated version.
+## 2 Ordibehesht 1401
+### Creating and managing a custom cursor
+I imagined a feature that when the user starts to draw on the `.plate`, the cursor turns into a pencil. At first I thought creating and adding the custom cursor to my CSS was the hard part. As it turned out, I was wrong! It was just one simple line of CSS:
+```css
+.myElement {
+  cursor: url(./cursor/Pencil.cur),default;
+}
+```
+Note: the second argument(default), is a fallback if for some reason our custom cursor does'nt work.
+
+The hard part was to figure out how to change the cursor when mouse button was down on a cell and turn it back to normal once the mouse button was up. My first idea was to add an `:active` pseudo-element to the `.cell`. How ever when you tried to drag the mouse out of the first activated cell, the cursor would turn back to normal. My second idea was to expand the `mouseover` event on the `.cell` so if the mouse was down, the cursor would change to pencil and if not, the cursor would stay the same. The problem with that idea was that the cursor would glitch when crosing the `.cell` borders to another one.
+
+And after other failed ideas, the soluton was like this:
+```css
+.plate:active *{
+  cursor: url(./cursor/Pencil.cur),default;
+}
+```
+This would define the `:active` state for the `.plate` and it would change the cursor on itself and all of its child elements.
+

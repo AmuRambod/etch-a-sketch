@@ -61,6 +61,10 @@ body{
   text-shadow: 0.1em 0.1em 5.5px black;
 }
 
+.logo sup{
+  font-size: 2.3rem;
+}
+
 .plate{
   background-color: #dbdbdb;
   box-sizing: border-box;
@@ -70,6 +74,10 @@ body{
   border: 1rem inset var(--plate-border-inset);
   border-radius: 1rem;
   box-shadow: 1rem 1rem 15px 0.5rem black inset;
+}
+
+.plate:active *{
+  cursor: url(./cursor/Pencil.cur),default;
 }
 
 .cell{
