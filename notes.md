@@ -111,3 +111,14 @@ And after other failed ideas, the soluton was like this:
 ```
 This would define the `:active` state for the `.plate` and it would change the cursor on itself and all of its child elements.
 
+## 14 Ordibehesht 1401
+### Making the "footer" visible and beautiful
+I added some font-size, color, line-break and line-height to the footer and like my last project (Rock-Paper-Scisors), I tried to add a `:hover` effect to the links to my GitHub page and TheOdinProject so it would do a `transform:scale(1.3)`. However, for some reason It would'nt work. After some hair pulling and existensial crisis, I found that to solve this issue you just have to add this:
+```css
+footer a{
+  display: inline-block;
+}
+```
+Turns out, you can not do `transform` to an `inline` element; so you have to change the `display` to `block` or `inline-block` to add animations. The reason I did'nt have to do that in my last project was I did a `display:flex` to its parent element (footer tag) and when I disabled it, the animation would'nt work!
+
+**I Love STACK-OVERFLOW!!!**
