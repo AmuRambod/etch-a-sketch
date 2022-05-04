@@ -89,10 +89,7 @@ body{
   opacity: 0.5;
 }
 
-#color-picker{
-  grid-area: 3/1/4/2;
-  outline-offset: 50px;
-}
+/* .circular-button */
 
 .circular-button{
   background-color: #dbdbdb;
@@ -119,12 +116,24 @@ body{
   background-color: lightcoral;
 }
 
+/* clear button */
+
 .circular-button#clear{
   transform: translate(-1.5rem , -1.5rem);
 }
 
 #clear{
   grid-area: 3/3/4/4;
+}
+
+/* options button */
+
+.circular-button#options{
+  transform: translate(1rem , -1.5rem);
+}
+
+#options{
+  grid-area: 3/1/4/2;
 }
 
 /* footer */

@@ -10,9 +10,13 @@
 
 - Add extra features:
   - [x] Clear the plate.
-  - [ ] Eraser.
-  - [ ] Ink color selection.
-  - [ ] Plate size selection.
+  
+  - [ ] The Options Modal:
+
+    - [ ] Eraser.
+    - [ ] Ink color selection.
+    - [ ] Plate size selection.
+
   - [ ] Ability to download the drawn sketch.
 
 - Minor plans:
