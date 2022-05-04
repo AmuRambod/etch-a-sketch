@@ -10,7 +10,7 @@
 
 - Add extra features:
   - [x] Clear the plate.
-  
+
   - [ ] The Options Modal:
 
     - [ ] Eraser.
@@ -24,5 +24,5 @@
 
 ## Bugs
 - [x] Footer is not visible.
-- [ ] text selecting interferes with showing the pencil cursor.
-  - potential fix: setting `user-select:none` for all elements.
+- [x] text selecting interferes with showing the pencil cursor.
+  - potential fix: setting `user-select:none` for all elements. => **IT WAS NOT!**

@@ -19,6 +19,7 @@
 }
 
 body{
+  user-select: none;
   background-image: url(./images/doodle-frame.png);
   background-size: cover;
   background-repeat: round;
@@ -76,7 +77,7 @@ body{
   box-shadow: 1rem 1rem 15px 0.5rem black inset;
 }
 
-.plate:active *{
+*:active .plate *{
   cursor: url(./cursor/Pencil.cur),default;
 }
 

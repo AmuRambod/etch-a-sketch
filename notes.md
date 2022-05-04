@@ -153,3 +153,23 @@ I had another hurdle with `transform:scale()` in styling the clear-button. This 
 ```
 I added an `!important` at the end of it. Which is a **BAD PRACTICE!**
 
+### Fixing the bug with custom cursor
+When I added the [custom cursor](#creating-and-managing-a-custom-cursor) on the [2nd of Ordibehesht](#2-ordibehesht-1401), I had to deal with the headache of making the cursor not glitch when crossing borders of the `.cell`s. At the time my solution was this:
+```css
+.plate:active *{
+  cursor: my-custom-cursor;
+}
+```
+This line of code means this: 
+>*If anywhere* **on the `.plate`** *is active (the mouse key is down), every child elements cursor has to change.*
+
+However this has problem! The problem is if you want to enter the `.plate` from outside of it with your mouse down, because the mouse-event happend outside of the `.plate`, the cursor does'nt change.
+
+I fixed it by replacing it with this:
+```css
+*:active .plate *{
+  cursor: my-custom-cursor;
+}
+```
+which means:
+>*If anywhere* **on the whole web-page** *is active (the mouse key is down), the cursor of every child element of the `.plate` has to change.*
