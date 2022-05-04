@@ -1,3 +1,6 @@
+//DEFAULT values
+const DEFAULT_SIZE = 20;
+const DEFAULT_INK = "black";
 
 //#region Plate
 const plate = document.querySelector(".plate");
@@ -6,7 +9,7 @@ document.body.addEventListener("mousedown",() => mouseDown = true);
 document.body.addEventListener("mouseup",() => mouseDown = false);
 
 //color of the ink: DEFAULT = "black"
-let ink = "black";
+let ink = DEFAULT_INK;
 
 // this function creates the plate with size its given and adds two `EventListener`s to each cell.
 function createPlate(size){
@@ -31,6 +34,17 @@ function changeColor(e){
 }
 //#endregion Plate
 
+//clear button
+const clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click",() => {
+  const cells = plate.querySelectorAll(".cell");
+  cells.forEach(cell => {
+    cell.style["background-color"] = "white";
+    cell.style.opacity = 0.5;
+  })
+})
+
+
 //#region main()
-createPlate(20);
+createPlate(DEFAULT_SIZE);
 //#endregion main()

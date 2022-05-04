@@ -9,7 +9,7 @@
   - [x] Change the cursor to a pen(?) when drawing.
 
 - Add extra features:
-  - [ ] Clear the plate.
+  - [x] Clear the plate.
   - [ ] Eraser.
   - [ ] Ink color selection.
   - [ ] Plate size selection.
@@ -20,3 +20,5 @@
 
 ## Bugs
 - [x] Footer is not visible.
+- [ ] text selecting interferes with showing the pencil cursor.
+  - potential fix: setting `user-select:none` for all elements.

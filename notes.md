@@ -122,3 +122,34 @@ footer a{
 Turns out, you can not do `transform` to an `inline` element; so you have to change the `display` to `block` or `inline-block` to add animations. The reason I did'nt have to do that in my last project was I did a `display:flex` to its parent element (footer tag) and when I disabled it, the animation would'nt work!
 
 **I Love STACK-OVERFLOW!!!**
+
+### Adding functionalities
+When I started this project, I envisioned a web-app that (at least visually) mimics a real etch-a-sketch board. So I wanted to add those two round knobs on bottom corners and use them to give my app a bit of magic.
+
+The bottom right one is gonna be used for clearing the plate. And for the other button, I want it to open a pop-up window (modal) that has theese options:
+
+1. Selecting the ink color
+2. Eraser
+3. a slider for adjusting the size of the plate. I have'nt decided on wether I want it on the pop-up or on the bottom side of the `.frame`.
+
+### Clear button
+I added a button to clear the plate which does its job with this bit of code:
+```js
+clearButton.addEventListener("click",() => {
+  const cells = plate.querySelectorAll(".cell");
+  cells.forEach(cell => {
+    cell.style["background-color"] = "white";
+    cell.style.opacity = 0.5;
+  })
+})
+```
+It basically goes through every cell on the `plate` and turns their background-color and opacity to their undrawn stage.
+
+I had another hurdle with `transform:scale()` in styling the clear-button. This time the problem was that I prior to adding the `:hover` pseudo-class, I used `transform: translate()` to position the knob where I wanted and I used a very specific selector: `.circular-button#clear` so it would automatically overwrite the `.circular-button:hover` selector. This is how  solved it:
+```css
+.circular-button:hover{
+  transform: translate(-1.5rem , -1.5rem) scale(1.5) !important; 
+}
+```
+I added an `!important` at the end of it. Which is a **BAD PRACTICE!**
+
