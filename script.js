@@ -2,11 +2,12 @@
 const DEFAULT_SIZE = 20;
 const DEFAULT_INK = "black";
 
-//#region Plate
-const plate = document.querySelector(".plate");
 let mouseDown = false; //this variable helps us to track the position of the mouse button
 document.body.addEventListener("mousedown",() => mouseDown = true);
 document.body.addEventListener("mouseup",() => mouseDown = false);
+
+//#region Plate
+const plate = document.querySelector(".plate");
 
 //color of the ink: DEFAULT = "black"
 let ink = DEFAULT_INK;
@@ -32,19 +33,24 @@ function changeColor(e){
   e.target.style["background-color"] = ink;
   e.target.style.opacity = 0.85;
 }
-//#endregion Plate
 
-//clear button
-const clearButton = document.querySelector("#clear");
-clearButton.addEventListener("click",() => {
+//this function clears the plate
+function clearPlate(){
   const cells = plate.querySelectorAll(".cell");
   cells.forEach(cell => {
     cell.style["background-color"] = "white";
     cell.style.opacity = 0.5;
   })
-})
+}
 
+//#endregion Plate
+
+//clear button
+const clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click",clearPlate)
 
 //#region main()
-createPlate(DEFAULT_SIZE);
+window.onload = () =>{
+  createPlate(DEFAULT_SIZE);
+}
 //#endregion main()
