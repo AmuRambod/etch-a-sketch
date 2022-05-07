@@ -173,3 +173,34 @@ I fixed it by replacing it with this:
 ```
 which means:
 >*If anywhere* **on the whole web-page** *is active (the mouse key is down), the cursor of every child element of the `.plate` has to change.*
+
+
+## 18 Ordibehesht 1401
+Last night I hyper-focused on creating the `#size-slider` so much that I forgot to take notes of my progress or to commit my changes to git. So now my notes on this topic will not be very precise but I will try my best.
+
+### Size slider
+These sliders are `<input type="range>` and they have some attributes like *min*, *max*, *value* and so on to control the input value by these sliders.
+
+Styling it was difficult. Turns out the styling is done by **Web-kit**s. [Here](https://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.html) is the article that teaches how to style these **range input**s.
+
+And for the part that shows the `sizeValue` when you are sliding, I used the `<label>` for it and styled it. The clever part of this is that it follows the sliders **thumb** and the way I achieved this effect was like this:
+```js
+const sizeMin = parseInt(sizeSlider.getAttribute("min"));
+const sizeMax = parseInt(sizeSlider.getAttribute("max"));
+const sizeRange = sizeMax - sizeMin;
+//these lines basically getting the "min" and "max" values of the range-input
+//so if I want to, I can change them later
+
+//this function updates the labels content as the "slider" slides.
+function updateSize(){
+  let translateX = ((plateSize-sizeMin)/sizeRange)*24 - 12;
+  sizeLabel.style.setProperty("--position-x",`${translateX}rem`);
+
+  let restOfTheCode = "Blah-Blah";
+}
+```
+The first two lines of code in the `updateSize` function, basically calculates the portion of the current value in the range and converts it to the **24rem** distance of the slider which I figured it out by putting values on `--position-x` and testing it. The reason for the "-12" in the first line is that I centered the label so the range of `--position-x` is from *-12rem* to *+12rem*.
+
+**PERSONAL NOTE: I coded the label following the thumb part when I was so tired and sleepless that I could'nt hold my eyelids open and my mom was actually worried about me :laughing:**
+
+Long story short, I did it but it only works on chromium based browsers. And by the way every thing looks a bit janky in firefox and I don't know the reason. I added this to the bugs to fix!

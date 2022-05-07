@@ -15,7 +15,7 @@
 
     - [ ] Eraser.
     - [ ] Ink color selection.
-    - [ ] Plate size selection.
+    - [x] Plate size selection.
 
   - [ ] Ability to download the drawn sketch.
 
@@ -23,6 +23,12 @@
   - [x] Add the ® Symbol after the "Etch A Sketch" logo using pseudo-elements. => It was done by `<sup>` tag.
 
 ## Bugs
-- [x] Footer is not visible.
-- [x] text selecting interferes with showing the pencil cursor.
-  - potential fix: setting `user-select:none` for all elements. => **IT WAS NOT!**
+- ### major bugs
+  - [ ] `size-slider`s styling does not work on firefox.
+  - [ ] the whole site looks weird and janky on firefox.
+  - [x] text selecting interferes with showing the pencil cursor.
+    - potential fix: setting `user-select:none` for all elements. => **IT WAS NOT!**
+
+- ### minor bugs
+  - [x] Footer is not visible.
+  - [ ] Footer links go to nowhere.
