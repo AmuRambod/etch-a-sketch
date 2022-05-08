@@ -31,4 +31,4 @@
 
 - ### minor bugs
   - [x] Footer is not visible.
-  - [ ] Footer links go to nowhere.
+  - [x] Footer links go to nowhere.
