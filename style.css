@@ -88,8 +88,13 @@ body{
   border: 1px dotted black;
   cursor: default;
   user-select: none;
-  border-style: none none dotted dotted;
+  border-style: dotted none none dotted;
   opacity: 0.5;
+}
+
+.cell.drawn{
+  opacity: 0.85;
+  border:none;
 }
 
 /* size range input */

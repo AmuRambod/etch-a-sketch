@@ -37,22 +37,21 @@ function createPlate(){
 //this function changes the color of the cells that have been drawn on
 function changeColor(e){
   if(e.type === "mouseover" && !mouseDown) return;
-  let color , opacity;
+  let color;
   switch (currentMode){
     case "pencil-mode":
       color = ink;
-      opacity = 0.85;
+      e.target.classList.add("drawn");
       break;
     case "eraser-mode":
       color = "white";
-      opacity = 0.5;
+      e.target.classList.remove("drawn");
       break;
     default:
       console.log(`mode ERROR!\ncurrentMode = ${currentMode}`);
       break;
   }
   e.target.style["background-color"] = color;
-  e.target.style.opacity = opacity;
 }
 
 //this function clears the plate
@@ -60,7 +59,7 @@ function clearPlate(){
   const cells = plate.querySelectorAll(".cell");
   cells.forEach(cell => {
     cell.style["background-color"] = "white";
-    cell.style.opacity = 0.5;
+    cell.classList.remove("drawn");
   })
 }
 

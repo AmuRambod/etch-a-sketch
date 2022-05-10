@@ -262,3 +262,13 @@ colorPicker.addEventListener("change", (e) => {
 })
 ```
 **ink** is a global value that when `changeColor(e)` is called, it would change the color of the drawn `.cell` to its value.
+
+### *BUG FIX:* removing borders from drawn cells
+The problem was that when you drew, the drawn cell's borders would show and it was *UGLY*. So the solution was something that I knew for a while I have to implement but never did; And it was this: Creating a new css rule:
+```css
+.cell.drawn{
+  opacity: 0.85;
+  border:none;
+}
+```
+Then in `changeColor(e)` function, instead of adding the opacity manually, I just add the `.drawn` class to the drawn cells and when using the eraser-mode or clearing the `.plate`, It would just remove the `.drawn` class from the cells.

@@ -42,4 +42,4 @@
 
     - When the `.option-toolbar` is open, when you add anywhere except the `#options`, the toolbar closes and the *options button* itself is part of `#options`. 
 
-  - [ ] When a `.cell` is drawn, its borders should be gone!
+  - [x] When a `.cell` is drawn, its borders should be gone!
