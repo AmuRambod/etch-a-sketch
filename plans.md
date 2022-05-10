@@ -2,6 +2,8 @@
 ## plans
 - [x] Add a header.
 
+- [ ] Write the *README.md*.
+
 - [ ] Edit the options modal:
   - In the options modal, if user chooses pencil mode, the pencil button mode expands to reveal the color picker underneath it. And if the user switches the mode, the color picker fades and pencil button mode goes back to normal.
 
@@ -39,3 +41,5 @@
   - [ ] Clicking the *options button* should close the `.options-toolbar`:
 
     - When the `.option-toolbar` is open, when you add anywhere except the `#options`, the toolbar closes and the *options button* itself is part of `#options`. 
+
+  - [ ] When a `.cell` is drawn, its borders should be gone!
