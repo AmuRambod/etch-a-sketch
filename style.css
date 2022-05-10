@@ -9,13 +9,16 @@
 }
 
 :root{
-  /* font-size: 11px; */
   font-size: clamp(4.5px,0.9vw,10px);
+  font-family: 'Oswald' , sans-serif;
+  --frame-width: 7rem;
   --frame-red: #d80100;
   --header-yellow: #d6d600;
-  --frame-width: 7rem;
   --frame-border-outset: #ff1a1a;
   --plate-border-inset: #a80100;
+  --pencil-mode-cursor: url(./cursor/Pencil.cur),pointer;
+  --eraser-mode-cursor: url(./cursor/Eraser.cur),pointer;
+  --current-mode-cursor: var(--pencil-mode-cursor);
 }
 
 body{
@@ -28,7 +31,7 @@ body{
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template: 95% 5% / 100%; /*row-template / column-template */
+  grid-template: 95% 5% / 100%; /*row-template / column-template*/
   place-items: center;
 }
 
@@ -50,7 +53,6 @@ body{
   text-align: center;
   color: var(--header-yellow);
   grid-area: 1 / 1 / 2 / 4;
-  font-family: 'Oswald', sans-serif;
   margin-top: 1rem;
   text-shadow: 0.5rem 0.5rem 5.5px #700000;
 }
@@ -78,7 +80,7 @@ body{
 }
 
 *:active .plate *{
-  cursor: url(./cursor/Pencil.cur),default;
+  cursor: var(--current-mode-cursor);
 }
 
 .cell{
@@ -125,7 +127,7 @@ input[type="range"]::-webkit-slider-runnable-track{
 input[type="range"]::-webkit-slider-thumb{
   --thumb-size:4rem;
   -webkit-appearance: none;
-  background-color: red;
+  background-color: var(--plate-border-inset);
   width: var(--thumb-size);
   height: var(--thumb-size);
   margin-top: calc((var(--thumb-size) / -2) + .5rem);
@@ -143,7 +145,6 @@ input[type="range"]:active::-webkit-slider-thumb{
 label[for="size-slider"]{
   --position-x:0rem;
   background-color: rgba(219, 219, 219,0.75);
-  font-family: 'Oswald',sans-serif;
   width: 2ch;
   text-align: center;
   padding:2rem;
@@ -162,6 +163,7 @@ label[for="size-slider"].active{
 /* .circular-button */
 
 .circular-button{
+  position: relative;
   background-color: #dbdbdb;
   width: 100%;
   height: 100%;
@@ -169,19 +171,18 @@ label[for="size-slider"].active{
   display: grid;
   place-items: center;
   font-size: 2rem;
-  font-family: 'Oswald',sans-serif;
   border: 0.5rem solid black;
-  box-shadow: 0.5rem 0.5rem #444444;
+  box-shadow: 0.5rem 0.5rem 1rem black;
   cursor: pointer;
   transition: all 200ms;
 }
 
 .circular-button:hover{
-  transform: translate(-1.5rem , -1.5rem) scale(1.5) !important; 
-  box-shadow: 1rem 1rem 1rem #444444;
+  transform: scale(1.25);
+  box-shadow: 0.75rem 0.75rem 2rem black;
 }
 
-.circular-button:active{
+.circular-button#clear:active{
   color: white;
   background-color: lightcoral;
 }
@@ -189,7 +190,8 @@ label[for="size-slider"].active{
 /* clear button */
 
 .circular-button#clear{
-  transform: translate(-1.5rem , -1.5rem);
+  top: -1.5rem;
+  left: -1.5rem;
 }
 
 #clear{
@@ -199,11 +201,108 @@ label[for="size-slider"].active{
 /* options button */
 
 .circular-button#options{
-  transform: translate(1rem , -1.5rem);
+  top: -1.5rem;
+  left: 1rem;
 }
 
 #options{
   grid-area: 3/1/4/2;
+}
+
+#options.active .options-toolbar{
+  transform: scale(1.2);
+}
+
+#options.active{
+  color: white;
+  background-color: lightcoral;
+  transform: scale(1.25);
+  z-index: 5;
+}
+
+/* this here is to keep the label of the button centered
+because the ".options-toolbar" affects it */
+#options > span{
+  position: absolute;
+}
+
+/* options toolbar */
+
+.options-toolbar{
+  --toolbar-font-size: 3rem;
+  position: relative;
+  bottom: calc(100% + 3rem);
+  left: -25%;
+  background-color: rgba(219, 219, 219, 0.75);
+  font-size: var(--toolbar-font-size);
+  color: #444;
+  border: none;
+  box-shadow: 0 0 2rem .2rem black;
+  border-radius: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transform: scale(0);
+  transition: all 300ms;
+}
+
+.options-toolbar > div{
+  display: flex;
+  width: max-content;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+/* this is for the icons */
+.options-toolbar img{
+  width: var(--toolbar-font-size);
+  height: var(--toolbar-font-size);
+  pointer-events: none;
+}
+
+/* color-picker */
+
+input[type="color"]{
+  overflow: auto;
+  -webkit-appearance: none;
+  border: none;
+  background-color: transparent;
+  width: 3.5rem;
+  height: 3.5rem;
+  cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper{
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch{
+  border:none;
+  border-radius: 25%;
+}
+
+/* options buttons */
+
+.options-mode{
+  background-color: rgba(255, 255, 255, 0.6);
+  gap: 1rem !important;
+  border: 0.2rem solid black;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  transition: all 200ms;
+}
+
+.options-mode:hover{
+  transform: scale(1.1);
+}
+
+.options-mode.active{
+  background-color: rgba(255, 0, 0, 0.5);
+  color:white;
+  border-color: rgb(128, 0,0);
+  box-shadow: 0 0 2rem rgb(128, 0,0);
 }
 
 /* footer */
@@ -211,7 +310,6 @@ footer{
   color: var(--plate-border-inset);
   margin-bottom: 5rem;
   text-align: center;
-  font-family: 'Oswald', sans-serif;
   background-color: white;
   box-shadow: 0 0 4rem 3rem white;
   font-size: 2.5rem;
@@ -236,4 +334,18 @@ footer a:hover{
   body {
     background-image: url(./images/doodle-frame-mobile.png);
   }
+}
+
+#overlay{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+#overlay.active{
+  /* background-color: rgba(15, 250, 155, 0.5); */
+  pointer-events: all;
 }

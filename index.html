@@ -25,11 +25,28 @@
 
     <!-- options button -->
     <div class="circular-button" id="options">
-      OPTIONS
+      <span>OPTIONS</span>
+      <!-- options toolbar -->
+      <div class="options-toolbar">
+        <!-- color-picker -->
+        <div class="color-picker-container">
+          <label for="color-picker">Color</label>
+          <input type="color" name="color-picker" id="color-picker" value="#000000">
+        </div>
+        <!-- pencil-mode button -->
+        <div class="options-mode active" id="pencil-mode">
+          Pencil 
+          <img src="./images/pencil.png" alt="">
+          <!-- attribution for icon: <a href="https://www.flaticon.com/free-icons/pencil" title="pencil icons">Pencil icons created by Freepik - Flaticon</a> -->
+        </div>
+        <!-- eraser-mode button -->
+        <div class="options-mode" id="eraser-mode">
+          Eraser
+          <img src="./images/eraser.png" alt="">
+          <!-- attribution for icon: <a href="https://www.flaticon.com/free-icons/eraser" title="eraser icons">Eraser icons created by itim2101 - Flaticon</a> -->
+        </div>
+      </div>
     </div>
-
-    <!-- color picker
-    <input type="color" name="ColorPicker" id="color-picker"> -->
 
     <!-- size range input -->
     <div class="size-slider-container">
@@ -42,6 +59,8 @@
       CLEAR
     </div>
   </div>
+
+  <div id="overlay"></div>
   
   <!-- footer -->
   <footer>Challenge by <a href="https://www.theodinproject.com/lessons/foundations-etch-a-sketch" target="_blank"> The Odin Project</a> .<br>Coded by <a href="https://github.com/AmuRambod" target="_blank"> Amu Rambod</a> .</footer>

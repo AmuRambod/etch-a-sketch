@@ -1,4 +1,5 @@
 //DEFAULT values
+const DEFAULT_MODE = "pencil-mode";
 const DEFAULT_SIZE = 20;
 const DEFAULT_INK = "black";
 
@@ -9,12 +10,13 @@ let updateSizeMouseDown = false; //this variable tells if the first event of the
 document.body.addEventListener("mousedown",() => mouseDown = true);
 document.body.addEventListener("mouseup",() => mouseDown = false);
 
+//setting the DEFAULT values to the main function variables
+let currentMode = DEFAULT_MODE;
+let plateSize = DEFAULT_SIZE;
+let ink = DEFAULT_INK;
+
 //#region Plate
 const plate = document.querySelector(".plate");
-
-//color of the ink: DEFAULT = "black"
-let ink = DEFAULT_INK;
-let plateSize = DEFAULT_SIZE;
 
 // this function creates the plate with size of global "plateSize" and adds two `EventListener`s to each cell.
 function createPlate(){
@@ -35,8 +37,22 @@ function createPlate(){
 //this function changes the color of the cells that have been drawn on
 function changeColor(e){
   if(e.type === "mouseover" && !mouseDown) return;
-  e.target.style["background-color"] = ink;
-  e.target.style.opacity = 0.85;
+  let color , opacity;
+  switch (currentMode){
+    case "pencil-mode":
+      color = ink;
+      opacity = 0.85;
+      break;
+    case "eraser-mode":
+      color = "white";
+      opacity = 0.5;
+      break;
+    default:
+      console.log(`mode ERROR!\ncurrentMode = ${currentMode}`);
+      break;
+  }
+  e.target.style["background-color"] = color;
+  e.target.style.opacity = opacity;
 }
 
 //this function clears the plate
@@ -88,6 +104,42 @@ function updateSize(e){
 //clear button
 const clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click",clearPlate)
+
+//options button
+const overlay = document.querySelector("#overlay");
+//clicking anywhere except the option box when the box is open => close the box
+overlay.onclick = () =>{
+  overlay.classList.remove("active");
+  optionsButton.classList.remove("active");
+}
+
+const optionsButton = document.querySelector("#options");
+optionsButton.addEventListener("click",openOptionsBox);
+
+//this function opens the ".options-toolbar"
+function openOptionsBox(){
+  overlay.classList.add("active");
+  optionsButton.classList.add("active");
+}
+
+//explaining this chunk of code:
+// get all the ".option-mode" buttons => when on of them is clicked =>
+// get the targets id(i.e mode) => add class ".active" to the target and
+// remove the class ".active" from the other one.
+const modeButtons = optionsButton.querySelectorAll(".options-mode");
+modeButtons.forEach(button => {
+  button.onclick = (e) => {
+    currentMode = e.target.getAttribute("id");
+    optionsButton.querySelector(`#${currentMode}`).classList.add("active");
+    optionsButton.querySelector(`.options-mode:not(#${currentMode})`).classList.remove("active");
+    //setting the cursor
+    document.querySelector(":root").style.setProperty("--current-mode-cursor",`var(--${currentMode}-cursor)`);
+  }
+})
+
+// color-picker
+const colorPicker = document.querySelector("#color-picker");
+colorPicker.onchange = (e) => ink = e.target.value;
 
 //#region main()
 window.onload = () =>{

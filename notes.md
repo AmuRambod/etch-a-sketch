@@ -204,3 +204,61 @@ The first two lines of code in the `updateSize` function, basically calculates t
 **PERSONAL NOTE: I coded the label following the thumb part when I was so tired and sleepless that I could'nt hold my eyelids open and my mom was actually worried about me :laughing:**
 
 Long story short, I did it but it only works on chromium based browsers. And by the way every thing looks a bit janky in firefox and I don't know the reason. I added this to the bugs to fix!
+
+## 20 Ordibehesht 1401
+So I did it again! I hyper-focused on the options modal two days ago and I forgot to take notes and now I have no idea how I did it :sweat_smile:
+
+### Options toolbox and Eraser mode
+Yesterday, I added the `.options-toolbox`'s HTML and CSS and added JavaScript that would open and close the toolbox when you clicked on the `#options` button. Now, I added the *eraser-mode* and *pencil-mode* functionality. The way I achieved this was by defining a global variable `currentMode` in <ins>script.js</ins> that would change with clicking on `.option-mode` buttons and getting the *id* attribute of the pressed button.
+```js
+modeButtons.forEach(button => {
+  button.onclick = (e) => {
+    currentMode = e.target.getAttribute("id");
+  }
+})
+```
+And then, in the `changeColor(e)` function - that would change the color of the selected `.cell`, I did this:
+```js
+function changeColor(e){
+  switch(currentMode){
+    case "pencil-mode":
+      e.target.style["background-color"] = ink;
+      break;
+    case "eraser-mode":
+      e.target.style["background-color"] = white;
+  }
+}
+```
+On the [2nd of Ordibehesht](#creating-and-managing-a-custom-cursor), I added a custom cursor. And now I wanted the cursor to change to an eraser when on *eraser-mode*. So I defined two `:root` variables in my css for these two icons and another variable to track the current mode:
+```css
+:root{
+  --pencil-mode-cursor: url(path-to-pencil-cursor);
+  --eraser-mode-cursor: url(path-to-eraser-cursor);
+  --current-mode-cursor: var(--pencil-mode-cursor);
+  /* On load, the "pencil-mode" will be active */
+}
+
+*:active .plate *{
+  cursor: var(--current-mode-cursor);
+}
+```
+Then I controled the `--current-mode-cursor` in <ins>script.js</ins>:
+```js
+modeButtons.forEach(button => {
+  button.onclick = (e) => {
+    currentMode = e.target.getAttribute("id");
+    document.querySelector(":root").style.setProperty("--current-mode-cursor",`var(--${currentMode}-cursor)`);
+  }
+})
+```
+
+### Adding the color-picker functionality
+The `#color-picker` is an `<input type="color">` that will change the color of the ink, when drawing on the `.plate`. Styling it was a massive headache with `-webkit`s and I wasn't realy awake when I did it. So I don't remember how I did it. :sweat_smile:
+
+However, the JavaScript part was like this:
+```js
+colorPicker.addEventListener("change", (e) => {
+  ink = e.target.value;
+})
+```
+**ink** is a global value that when `changeColor(e)` is called, it would change the color of the drawn `.cell` to its value.

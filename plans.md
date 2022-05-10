@@ -2,6 +2,9 @@
 ## plans
 - [x] Add a header.
 
+- [ ] Edit the options modal:
+  - In the options modal, if user chooses pencil mode, the pencil button mode expands to reveal the color picker underneath it. And if the user switches the mode, the color picker fades and pencil button mode goes back to normal.
+
 - Style the UI:
   - [x] Color template.
   - [X] Responsiveness for mobile.
@@ -11,11 +14,12 @@
 - Add extra features:
   - [x] Clear the plate.
 
-  - [ ] The Options Modal:
+  - [x] The Options Modal:
 
-    - [ ] Eraser.
-    - [ ] Ink color selection.
-    - [x] Plate size selection.
+    - [x] Eraser.
+    - [x] Ink color selection.
+
+  - [x] Plate size selection.
 
   - [ ] Ability to download the drawn sketch.
 
@@ -32,3 +36,6 @@
 - ### minor bugs
   - [x] Footer is not visible.
   - [x] Footer links go to nowhere.
+  - [ ] Clicking the *options button* should close the `.options-toolbar`:
+
+    - When the `.option-toolbar` is open, when you add anywhere except the `#options`, the toolbar closes and the *options button* itself is part of `#options`. 
