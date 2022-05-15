@@ -272,3 +272,6 @@ The problem was that when you drew, the drawn cell's borders would show and it w
 }
 ```
 Then in `changeColor(e)` function, instead of adding the opacity manually, I just add the `.drawn` class to the drawn cells and when using the eraser-mode or clearing the `.plate`, It would just remove the `.drawn` class from the cells.
+
+## 25 Ordibehesht 1401
+I added this repository to the "solutions" of [The Odin Project](https://www.theodinproject.com/) for the world to see and **JUDGE**. Wish me luck. :wink:
